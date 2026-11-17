@@ -93,23 +93,53 @@ def plot_fit(data, best):
     plt.show()
 
 def main():
-    filename = 'Numberofindividualpartsinorder.txt'
+    filenames = ['Numberofindividualpartsinorder.txt', 'Numberofboxesinorder.txt', "timestogetboxes.txt"] # put your filenames here
 
-    data = load_data(filename)
-    results = fit_distributions(data)
-    best = results[0]
+    for filename in filenames:
+        data = load_data(filename)
+        results = fit_distributions(data)
+        best = results[0]
 
-    print("\nBest Distribution")
-    print("------------------------")
-    print(f"Name: {best['name']}")
-    print(f"KS Statistic: {best['ks']:.6f}")
-    print(f"p-Value: {best['p']:.6f}")
+        print(f"\nBest Distribution for {filename}")
+        print("------------------------")
+        print(f"Name: {best['name']}")
+        print(f"KS Statistic: {best['ks']:.6f}")
+        print(f"p-Value: {best['p']:.6f}")
 
-    print("\nArena Expression:")
-    print(arena_expression(best["name"], best["params"]))
+        print("\nArena Expression:")
+        print(arena_expression(best["name"], best["params"]))
 
-    plot_fit(data, best)
+        plot_fit(data, best)
 
 if __name__ == "__main__":
     main()
 
+##########################################################
+################### SAMPLE DATA ##########################
+##########################################################
+# Best Distribution for Numberofindividualpartsinorder.txt
+# ------------------------
+# Name: UNIF
+# KS Statistic: 0.032286
+# p-Value: 0.580831
+
+# Arena Expression:
+# UNIF(1002.0000, 2996.0000)
+
+# Best Distribution for Numberofboxesinorder.txt
+# ------------------------
+# Name: LOGN
+# KS Statistic: 0.027902
+# p-Value: 0.755640
+
+# Arena Expression:
+# LOGN(33554792.7437, 0.0000)
+
+# Best Distribution for timestogetboxes.txt
+# ------------------------
+# Name: LOGN
+# KS Statistic: 0.035731
+# p-Value: 0.824931
+
+# Arena Expression:
+# LOGN(3.0236, 0.2083)
